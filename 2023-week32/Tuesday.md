@@ -6,6 +6,19 @@
 Once a program is converted to CPS without free variables, the result is a kind of low-level code where the parameters correspond to the field of the machine instruction of the primitive operations allowed in CPS - including a parameter for what the address of the next instruction should be.
 ```
   - the example snippet is written in pearls
+  - fix-point: How does Y combinator work?
+$$
+\begin{align}
+Y &= \lambda f.(\lambda x. f (x\space x)) (\lambda x. f(x \space x))\\
+\text{factorial} &= Y (\lambda f.\lambda x. (x = 0) \space ?:1:x \times f (x - 1))\\
+\text{factorial} &= Y fac\\
+&= (\lambda x. fac (x\space x)) (\lambda x. fac (x \space x))\\
+&= fac ((\lambda x. fac (x \space x))\space (\lambda x. fac (x \space x))) \\
+&= fac (Y fac) \\
+&= \lambda x. (x = 0) \space ?:1:x \times (Y fac) (x - 1) \\
+&= \lambda x. (x = 0) \space ?:1:x \times \text{factorial} \space(x - 1) \\
+\end{align}
+$$
 - GADT
   - OCaml is able to utilize GADT to make invalid state unrepresentable
     - compile error instead of runtime error
