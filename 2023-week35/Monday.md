@@ -17,4 +17,7 @@
       - call bdlat_sequenceAccessAttributes
       - ADL kick in since by look up the namespace defined the type object
   - compile-time interface using duck typing and metafunctions
-    - 
+
+# #fp same fringe problem
+  - primitive solution 
+  - effect solution
