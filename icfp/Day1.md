@@ -1,0 +1,164 @@
+## #icfp GroqChip
+- GroqChip
+	- Matrix
+	- Data Switch
+	- Programming Note
+- Stream line operation
+- GroqCard
+- Can GPU still catch up
+- demos.groq.com/llama
+- 240 Tokens seconds
+- concrete
+- 320 Elements vector
+	- a series of matrix operation are streamlined
+	- read once, write once
+	- MXM
+		- matrix-vector/matrix-matrix multiplier
+- compiler
+	- convert your model to MXM instructions
+- programmer
+	- pytorch
+	- FPGA
+- FFT example in pytorch
+	- building a computational graph
+	- [ONNX](https://onnx.ai/onnx/index.html)
+	- ONNX can be dumped into google protobuf
+- Challenges of Building a Parallelising Compiler
+- An alternative DSL than ONNX
+- Haste Combinator
+	- DSL trick
+- combinators
+	- fork2
+	- par2 (??? Applicative)
+	- >=>
+	- reduceMin
+	- reduceMax
+	 - iliv
+	  - evens
+- not dependent type - Tensor
+- example
+	- sorter #g 
+	 - FFT
+	  - butterfly
+- C2C higher-order combinators
+	- (control ont the chip level)
+- excelled in the LLM
+- compiler based
+- Nvidia
+	- hire programmer  to do model specific optimisation
+- predicability shines
+
+##  #icfp Matrix mul
+
+ - matrix multiplication
+- anatomy of high-performance matrix multiplication
+	- recursive matrix multiplication
+	 - mathematical intuition matrix is monoid
+- rank polymorphism
+- Array Theory
+	- array are function (Index to Value - int -> value)
+	- applicative functor 
+	- equality
+- shape of tree
+- combinator
+	- nest
+	- unnest
+ - preserver local
+ - paper:
+	 - #g [Anatomy of high-performance](https://dl.acm.org/doi/10.1145/1356052.1356053)
+  - TLDR:
+	  - transpose hell
+	  - [SAC](https://www.sac-home.org/index) single assignment C is an array language
+
+## #icfp fast deep learning with category
+
+- Active Group
+	- Software Consultancy in Germnay
+	-  BOB conference
+ - Application: Anomaly Detection
+ - Computer
+ - Running neural network on raspberry pi
+ - Pytorch
+	 - Forward derivative
+	 - Backward derivative
+  - Tape in C++
+  - correlation #go
+  - autoencoder
+	  - affine @. affTanh @. affRelu @. affTanh
+- Using Representable Functor
+	- not concrete tensor type
+	 - parameterised by types
+ - Linear Map
+ - Combinator
+	 - ConCat plugin compatible with GHC
+  - Acc
+  - Exp
+	  - Acc on array computation
+	  - Exp on scalar computation
+- How to GPU
+	- data AccFun acc
+- fmap derivative
+	- delay the fmap and potentially fuse them later
+- TLDR
+	- combining compiling to category and accelerate together
+	 - way less mechanic than TensorFlow/Tape 
+	  - few people at intersection of math, categories, ghc, compilers
+
+## #icfp  affine
+
+- ilv #g
+- two
+- property of iliv, two
+- two(ilv f) === ilv (two f)
+- q network
+
+- Relates higher order function with Permutation
+- TLDR
+	- mathematics property of linear algebra increase the speed as well
+
+- GPU follow SIMT
+	- single instruction multiple threads (SIMT) #g 
+- GPU thread hierarchy
+	- Kernel
+	- Block
+	- Wrap
+ - GPU memory hierachy
+	 - Global memory 
+	 - shared memory 
+  - Memory access coalescing (fushion)
+  - Example: Matrix Tranpose
+  - Affine transformation
+	  - y = A*x + c
+   - Key ideas
+	   - view indices into arrays of size 2^n as binary array of size n
+- Index formula
+	- bit reversal
+	 - Array reversal
+		 - y_i = x _i + 1_
+
+- Permutation matric
+	- exactly one occurnce in every row and column
+ - combinator
+	 - parm
+		 -  parm mask f xs
+- Futhark
+	- transpose a multidimensional arrays to enable memory coalescing
+- BMMC permutation
+	- A = ULP
+	- A = (UR) * (RLP)
+	 - Implement BMMC computation into Futhark compiler
+  - what're the natural way to lift this limitation of 2^32?
+  - sorting network #g 
+  - fast fourier transform #g 
+  - blocking #g
+
+## summary
+- #lang [SAC](https://www.sac-home.org/index) single assignment C is an array language
+- #lang open [CILK](https://www.opencilk.org/doc/tutorials/introduction-to-cilk-programming/#:~:text=OpenCilk%20is%20a%20task%2Dparallel,tasks%20may%20run%20in%20parallel.)
+- [ONNX](https://onnx.ai/onnx/index.html) A programming language for mathematical functions
+- #lang futhark
+- #revisit exo language talk
+- #book More Mathematical Finance
+- #book Quant Job Interview Questions and Answers (Second Edition)
+- #paper Anatomy of high-performance matrix multiplication
+
