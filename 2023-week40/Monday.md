@@ -1,0 +1,3 @@
+- #software Implementing rabbit-mq tutorial 3 and 4 using OCaml client
+- #fp #algo decided this w40 fp topic is Multi-phase computation as an applicative functor
+- #cpp Using the C++ Sender/Receiver Framework: Implement Control Flow for Async Processing - Steve Downey
